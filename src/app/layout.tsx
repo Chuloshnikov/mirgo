@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mirgo",
+  title: "Mirago",
   description: "GShop Smarter, Live Better - Your One-Stop E-Commerce Destination!",
 };
 
