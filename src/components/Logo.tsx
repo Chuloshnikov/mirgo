@@ -7,7 +7,7 @@ const Logo = () => {
         Mirago
         <span 
         className={`absolute left-0 bottom-0 w-full h-px bg-lightRed -translate-x-[105%] 
-        group-hover:translate-x-0 hoverEffect transition-transform`}
+        group-hover:translate-x-0 hoverEffect `}
         />
     </h2>
   )
