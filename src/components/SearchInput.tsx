@@ -23,7 +23,7 @@ const SearchInput = () => {
             onClick={() => setSearch("")}
             className='text-accent/50 hover:text-lightRed hoverEffect cursor-pointer absolute right-20 top-4'/>
             )}
-        <button className='bg-lightRed text-accentWhite absolute right-0 
+        <button className='bg-lightRed text-accentWhite absolute right-2.5 
         px-3.5 py-1.5 text-sm hover:bg-darkRed hoverEffect font-medium top-2'
         >
             Search
