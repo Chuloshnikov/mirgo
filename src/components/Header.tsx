@@ -13,7 +13,7 @@ const Header = () => {
             <Container className='h-full flex items-center justify-between gap-5 lg:gap-10'>
                 <Logo/>
                 <SearchInput/>
-                <div className='hidden md:inline-flex item-center gap-7'>
+                <div className='hidden mdl:inline-flex item-center gap-7'>
                   {navBarList?.map((item, index) =>(
                     <Link 
                     className='navBarItem'
@@ -30,7 +30,7 @@ const Header = () => {
                     Studio
                   </Link>
                 </div>
-                <HiMenuAlt2 className="inline-flex md:hidden cursor-pointer text-3xl hover:text-darkRed hoverEffect"/>
+                <HiMenuAlt2 className="inline-flex mdl:hidden cursor-pointer text-3xl hover:text-darkRed hoverEffect"/>
             </Container>
         </nav>
     </header>

@@ -7,7 +7,7 @@ const SearchInput = () => {
     const [search, setSearch] = useState("");
   return (
     <>
-    <div className='w-full hidden md:inline-flex flex-1 h-12 relative'>
+    <div className='w-full hidden mdl:inline-flex flex-1 h-12 relative'>
         <CiSearch className='text-lg absolute left-2.5 mt-4 text-lightRed'/>
         <input 
         onChange={(e) => setSearch(e.target.value)}
