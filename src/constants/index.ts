@@ -11,10 +11,6 @@ export const navBarList = [
         title: "Cart",
         link: "/cart",
     },
-    {
-        title: "Home",
-        link: "/",
-    },
 ]
 
 export const footerData = [
