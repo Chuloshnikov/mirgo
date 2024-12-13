@@ -1,11 +1,20 @@
 import { getBannersData } from '@/lib/getData';
 import React from 'react'
+import Container from './Container';
 
 const Banner = async () => {
     const banners = await getBannersData();
-    console.log(banners);
+    const singleBanner = banners[0];
   return (
-    <div>Banner</div>
+   <Container>
+    {/* left half = single image */}
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+   </Container>
   )
 }
 
