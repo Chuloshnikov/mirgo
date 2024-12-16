@@ -9,7 +9,7 @@ const Banner = async () => {
    <Container>
     {/* left half = single image */}
         <div>
-
+          
         </div>
         <div>
 
