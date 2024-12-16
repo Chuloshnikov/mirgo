@@ -44,16 +44,16 @@ const Banner = async () => {
             className='h-full md:h-1/2 border rounded-lg overflow-hidden flex justify-center items-center p-5 group'
             >
               <div className='w-1/2 flex flex-col'>
-                  <div className='text-2xl font-semibold'>
+                  <div className='text-xl font-semibold'>
                     <p>
                       {item?.title}
                     </p>
-                    <p className='text-3xl font-bold'>
+                    <p className='text-2xl font-bold'>
                       {item?.subtitle}
                     </p>
                   </div>
                   <p className='mt-3 font-medium text-black/60'>
-                    From {item?.price}
+                    From ${item?.price}
                   </p>
                   <Link 
                   className='mt-5 font-bold underline underline-offset-2 decoration-[1px] hover:text-lightRed hoverEffect'
