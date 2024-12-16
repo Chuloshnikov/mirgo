@@ -3,8 +3,10 @@ import React from 'react'
 import Container from './Container';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
-import Link from 'next/link';
 import Button from './Button';
+
+import { BannerData } from '../../type';
+import Link from 'next/link';
 
 const Banner = async () => {
     const banners = await getBannersData();
@@ -16,7 +18,7 @@ const Banner = async () => {
           <div className='h-full z-10 absolute left-10 top-0 flex flex-col justify-center isolate gap-5 md:gap-10'>
             <div className='flex flex-col gap-1 md:gap-3'>
               <button className='bg-lightGreen text-white rounded-full w-20 py-1 text-sm font-semibold hover:bg-green-600 hoverEffect'>
-                Sale {singleBanner?.price}
+                Sale ${singleBanner?.price}
               </button>
               <p className='text-xl md:text-3xl font-semibold'>{singleBanner?.title}</p>
               <h2 className='text-2xl md:text-6xl font-bold'>{singleBanner?.subtitle}</h2>
@@ -34,8 +36,41 @@ const Banner = async () => {
           className='object-contain h-72 md:h-full max-h-[600px] self-end group-hover:scale-105 hoverEffect'
           />
         </div>
-        <div>
-
+        {/* Right half - double image */}
+        <div className='flex flex-col space-y-5 md:space-y-10 h-auto md:max-h-[600px]'>
+          {banners.slice(1, 3).map((item: BannerData) => (
+            <div 
+            key={item?._id}
+            className='h-full md:h-1/2 border rounded-lg overflow-hidden flex justify-center items-center p-5 group'
+            >
+              <div className='w-1/2 flex flex-col'>
+                  <div className='text-2xl font-semibold'>
+                    <p>
+                      {item?.title}
+                    </p>
+                    <p className='text-3xl font-bold'>
+                      {item?.subtitle}
+                    </p>
+                  </div>
+                  <p className='mt-3 font-medium text-black/60'>
+                    From {item?.price}
+                  </p>
+                  <Link 
+                  className='mt-5 font-bold underline underline-offset-2 decoration-[1px] hover:text-lightRed hoverEffect'
+                  href={'/shop'}
+                  >
+                    Shop now!
+                  </Link>
+              </div>
+              <Image 
+              src={urlFor(item?.image).url()} 
+              alt={item?.title} 
+              width={500} 
+              height={500}
+              className='object-contain h-72 md:h-60 w-1/2 group-hover:scale-105 hoverEffect'
+              />
+            </div>
+          ))}
         </div>
    </Container>
   )
