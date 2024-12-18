@@ -53,7 +53,7 @@ const Banner = async () => {
                     </p>
                   </div>
                   <p className='mt-3 font-medium text-black/60'>
-                    From ${item?.price}
+                    From <span className='text-darkRed'>${item?.price}</span>
                   </p>
                   <Link 
                   className='mt-5 font-bold underline underline-offset-2 decoration-[1px] hover:text-lightRed hoverEffect'
