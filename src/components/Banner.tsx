@@ -7,6 +7,7 @@ import Button from './Button';
 
 import { BannerData } from '../../type';
 import Link from 'next/link';
+import FormattedPrice from './FormattedPrice';
 
 const Banner = async () => {
     const banners = await getBannersData();
@@ -17,8 +18,8 @@ const Banner = async () => {
         <div className='md:col-span-2 bg-[#A3A3A3] relative flex items-end justify-end rounded-lg overflow-hidden group'>
           <div className='h-full z-10 absolute left-10 top-0 flex flex-col justify-center isolate gap-5 md:gap-10'>
             <div className='flex flex-col gap-1 md:gap-3'>
-              <button className='bg-lightGreen text-white rounded-full w-20 py-1 text-sm font-semibold hover:bg-green-600 hoverEffect'>
-                Sale ${singleBanner?.price}
+              <button className='bg-lightGreen text-white rounded-full max-w-max px-4 py-1 text-sm font-semibold hover:bg-green-600 hoverEffect'>
+                Sale <FormattedPrice amount={singleBanner?.price}/>
               </button>
               <p className='text-xl md:text-3xl font-semibold'>{singleBanner?.title}</p>
               <h2 className='text-2xl md:text-6xl font-bold'>{singleBanner?.subtitle}</h2>
@@ -53,7 +54,7 @@ const Banner = async () => {
                     </p>
                   </div>
                   <p className='mt-3 font-medium text-black/60'>
-                    From <span className='text-darkRed'>${item?.price}</span>
+                    From <FormattedPrice amount={item?.price} className='text-darkRed font-bold'/>
                   </p>
                   <Link 
                   className='mt-5 font-bold underline underline-offset-2 decoration-[1px] hover:text-lightRed hoverEffect'
