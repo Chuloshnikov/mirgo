@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import ProductCard from '@/components/ProductCard';
 import FormattedPrice from '@/components/FormattedPrice';
+import { MdStar } from 'react-icons/md';
 
 interface Props {
     params: {
@@ -56,7 +57,17 @@ export default async function SingleProductPage({ params }: Props) {
                     </p>
                     </div>
                     <div className='text-base text-lightText flex items-center'>
-                       
+                       {Array?.from({ length: 5})?.map((_, index) => {
+                            const filled = index + 1 <= Math.floor(product?.ratings);
+                            const halfFilled = index + 1 > Math.floor(product?.ratings) && index < Math.cail(product?.ratings);
+
+                            return (
+                                <MdStar
+                                key={index}
+                                className={`${filled ? "text-[#fa8900]" : halfFilled ? "text-[#f7ca00]" : "text-lightText"}`}
+                                />
+                            );
+                       })}
                     </div>
                 </div>    
             </div>   
