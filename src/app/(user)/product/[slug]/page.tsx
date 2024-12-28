@@ -8,6 +8,7 @@ import { urlFor } from '@/sanity/lib/image';
 import ProductCard from '@/components/ProductCard';
 import FormattedPrice from '@/components/FormattedPrice';
 import { MdStar } from 'react-icons/md';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface Props {
     params: {
@@ -25,7 +26,7 @@ export default async function SingleProductPage({ params }: Props) {
     const bestSellersData: ProductData[] = await getBestSellersData();
   return (
     <Container className='my-10 bg-bgLight'>
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-col-6 gap-4 h-full p-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full p-4'>
             <div className='h-full xl:col-span-2'>
                 <Image 
                 src={urlFor(product?.image).url()} 
@@ -56,19 +57,31 @@ export default async function SingleProductPage({ params }: Props) {
                         from this item
                     </p>
                     </div>
-                    <div className='text-base text-lightText flex items-center'>
-                       {Array?.from({ length: 5})?.map((_, index) => {
-                            const filled = index + 1 <= Math.floor(product?.ratings);
-                            const halfFilled = index + 1 > Math.floor(product?.ratings) && index < Math.cail(product?.ratings);
+                    <div className='flex items-center gap-3'>
+                        <div className='text-base text-lightText flex items-center'>
+                        {Array?.from({ length: 5})?.map((_, index) => {
+                                const filled = index + 1 <= Math.floor(product?.ratings);
+                                const halfFilled = index + 1 > Math.floor(product?.ratings) && index < Math.ceil(product?.ratings);
 
-                            return (
-                                <MdStar
-                                key={index}
-                                className={`${filled ? "text-[#fa8900]" : halfFilled ? "text-[#f7ca00]" : "text-lightText"}`}
-                                />
-                            );
-                       })}
+                                return (
+                                    <MdStar
+                                    key={index}
+                                    className={`${filled ? "text-[#fa8900]" : halfFilled ? "text-[#f7ca00]" : "text-lightText"}`}
+                                    />
+                                );
+                        })}
+                        </div>
+                        <p className='text-sm font-semibold text-accent/60 tracking-wide'>{`(5 customer reviews)`}</p>
                     </div>
+                    <p className='text-sm tracking-wide text-gray-600'>{product?.description}</p>
+                    <p className='text-sm text-gray-500'>Be the first to leave a review.</p>
+                    <AddToCartButton item={product} className='rounded-md py-3'/>
+                    <p className='font-normal text-sm'>
+                        <span className='text-base font-medium'>
+                            Categoories:{" "}
+                        </span>
+                        Playstation, Console, featured SKU N/A
+                    </p>
                 </div>    
             </div>   
         </div>
