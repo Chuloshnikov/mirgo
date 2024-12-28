@@ -65,6 +65,11 @@ export default defineType({
             type: "boolean"
         }),
         defineField({
+            name: "position",
+            title: "Position",
+            type: "string"
+        }),
+        defineField({
             name: "brand",
             title: "Brand",
             type: "string"
