@@ -26,7 +26,7 @@ const Header = () => {
                   <Link href={'/sign-in'} className='navBarItem'>
                     Sign in
                   </Link>
-                  <Link href={'/studio'} className='navBarItem'>
+                  <Link href={'/studio'} target='_blank' className='navBarItem'>
                     Studio
                   </Link>
                 </div>
