@@ -27,7 +27,7 @@ const AddToCartButton = ({ item, className }: Props) => {
       border-accent hover:bg-darkRed hover:border-darkRed hoverEffect 
       font-semibold  tracking-wide flex items-center justify-center gap-1`, className)}
       >
-        AddToCartButton
+        Add To Cart
       </button>
   )
 }

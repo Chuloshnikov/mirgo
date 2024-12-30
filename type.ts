@@ -53,4 +53,19 @@ export interface ProductData {
     _id: string;
     position: string;
     rowprice: number;
-}
+};
+
+
+export interface UserInfo {
+    id: string;
+    name: string;
+    email: string;
+};
+
+export interface StoreState {
+    mirago: {
+        cart: ProductData[];
+        wishList: ProductData[];
+        userInfo: UserInfo | null;
+    }
+};
