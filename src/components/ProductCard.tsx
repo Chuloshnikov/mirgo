@@ -15,6 +15,7 @@ const ProductCard = ({ item }: { item: ProductData }) => {
                 <Image 
                 src={urlFor(item?.image).url()} 
                 alt={item?._type} 
+                loading="lazy"
                 width={500}
                 height={500}
                 className="w-full h-72 object-cover group-hover:scale-105 hoverEffect"

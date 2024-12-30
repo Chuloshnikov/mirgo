@@ -1,8 +1,14 @@
+"use client"
+
 import Link from 'next/link';
 import React from 'react'
 import { MdSwitchAccount } from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../type';
 
 const SidebarCart = () => {
+
+  const { cart } = useSelector((state: StoreState) => state?.mirago)
   return (
     <Link 
     href={"/cart"}
@@ -18,7 +24,7 @@ const SidebarCart = () => {
         </p>
         <p className='absolute top-1 right-2 bg-darkRed text-white 
         text-xs w-4 h-4 rounded-full flex items-center justify-center font-semibold'>
-            0
+            {cart ? cart?.length : 0}
         </p>
     </Link>
   )
