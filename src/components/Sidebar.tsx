@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 import { MdSwitchAccount } from 'react-icons/md';
+import SidebarCart from './SidebarCart';
 
 const Sidebar = () => {
   return (
@@ -20,6 +21,7 @@ const Sidebar = () => {
             </p>
         </Link>
         {/*Cart*/}
+        <SidebarCart/>
     </div>
   )
 }
