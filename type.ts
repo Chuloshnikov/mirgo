@@ -29,6 +29,7 @@ type ImageAsset = {
 type Slug = {
     _id: string;
     name: string;
+    current?: string;
 };
 
 
