@@ -7,7 +7,9 @@ interface Props {
 
 const CartItem = ({ cart, item }: Props) => {
   return (
-    <div>CartItem</div>
+    <div className="w-full grid grid-cols-5 mb-4 border py-2">
+        <div></div>  
+    </div>
   )
 }
 
