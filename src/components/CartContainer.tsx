@@ -1,12 +1,24 @@
 "use client"
 
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ProductData, StoreState } from '../../type';
 import CartItem from './CartItem';
+import { resetCart } from '@/redux/miragoSlice';
+import toast from 'react-hot-toast';
 
 const CartContainer = () => {
-    const { cart } = useSelector((state: StoreState) => state?.mirago)
+    const { cart } = useSelector((state: StoreState) => state?.mirago);
+    const dispatch = useDispatch();
+
+    const handleResetCart = () => {
+        const confirmed = window.confirm('Are you sure to reset your Cart?');
+        if (confirmed) {
+            dispatch(resetCart());
+            toast.success('Cart reset successfully');
+        }
+    }
+
   return (
     <div>
         {cart?.length > 0 ? 
@@ -22,6 +34,12 @@ const CartContainer = () => {
                     <CartItem key={item?._id} cart={cart} item={item}/>
                 ))}
             </div> 
+            <button 
+            onClick={handleResetCart}
+            className='py-2 px-10 bg-red-700 text-white font-semibold uppercase mb-4 hover:bg-red-600 hoverEffect text-sm'
+            >
+                Reset cart
+            </button>
         </div>
          : <div>No Product</div>}
     </div>
