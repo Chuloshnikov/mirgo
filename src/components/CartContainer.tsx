@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { StoreState } from '../../type';
+import { ProductData, StoreState } from '../../type';
 import CartItem from './CartItem';
 
 const CartContainer = () => {
