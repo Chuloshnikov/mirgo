@@ -21,31 +21,31 @@ export const miragoSlice = createSlice({
   reducers: {
       addToCart: (state, action) => {
         const existingProduct = state.cart.find(
-          (item) => item._id === action.payload._id
+          (item) => item._id === action.payload
         );
 
         if (existingProduct) {
-          existingProduct.quantity += 1;
+          existingProduct.quantity += action.payload.quantity;
         } else {
-          state.cart.push(action.payload)
+          state.cart.push(action.payload);
         }
       },
       increaseQuantity: (state, action) => {
         const existingProduct = state.cart.find(
-          (item) => item._id === action.payload._id
+          (item) => item._id === action.payload
         );
 
         if (existingProduct) {
-          existingProduct.quantity += 1;
+          existingProduct.quantity++;
         }
       },
       decreaseQuantity: (state, action) => {
         const existingProduct = state.cart.find(
-          (item) => item._id === action.payload._id
+          (item) => item._id === action.payload
         );
 
         if (existingProduct) {
-          existingProduct.quantity -= 1;
+          existingProduct.quantity--;
         }
       },
       removeFromCart: (state, action) => {
@@ -56,7 +56,7 @@ export const miragoSlice = createSlice({
       },
       addToWishList: (state, action) => {
         const existingProduct = state.wishList.find(
-          (item) => item._id === action.payload._id
+          (item) => item._id === action.payload
           );
 
           if (existingProduct) {
