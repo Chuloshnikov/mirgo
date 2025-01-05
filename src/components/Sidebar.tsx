@@ -8,7 +8,7 @@ const Sidebar = () => {
     <div className='fixed top-60 right-2 z-20 flex flex-col gap-2'>
         {/*User Account*/}
         <Link 
-        href={"/signin"}
+        href={"/sign-in"}
         className='bg-accentWhite w-16 h-[70px] rounded-md flex flex-col gap-1 text-accent 
         justify-center items-center flex flex-col shadow-sm shadow-lightGreen overflow-x-hidden group overflow-hidden'
         >
