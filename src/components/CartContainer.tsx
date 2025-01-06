@@ -69,7 +69,7 @@ const CartContainer = ({session}: any) => {
                                 Proceed to Checkout
                             </Button>
                             {!session?.user && (
-                                <p className='text-center text-sm font-medium text-lightRed -mt-3'>
+                                <p className='text-center text-sm font-medium text-lightRed'>
                                     Please sign in to make Checkout
                                 </p>
                             )}
