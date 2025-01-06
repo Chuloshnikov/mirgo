@@ -1,11 +1,18 @@
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
 import Container from '@/components/Container'
+import { redirect } from 'next/navigation';
+
 import React from 'react';
 
 import { FcGoogle } from "react-icons/fc";
 
 
-export default function SignIn() {
+export default async function SignIn() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect('/');
+  }
   return (
     <Container className="py-20 flex flex-col justify-center items-center">
         <form 

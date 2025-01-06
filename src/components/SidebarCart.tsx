@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react'
-import { MdSwitchAccount } from 'react-icons/md';
+import { IoIosBasket } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../type';
 
@@ -16,8 +16,8 @@ const SidebarCart = () => {
     justify-center items-center flex flex-col shadow-sm shadow-lightGreen overflow-x-hidden group overflow-hidden relative'
     >
         <div className='flex items-center justify-center'>
-            <MdSwitchAccount className='text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200'/>
-            <MdSwitchAccount className='text-2xl -translate-x-3 group-hover:translate-x-12 transition-transform duration-200'/>
+            <IoIosBasket className='text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200'/>
+            <IoIosBasket className='text-2xl -translate-x-3 group-hover:translate-x-12 transition-transform duration-200'/>
         </div>
         <p className='text-xs font-semibold'>
             Buy Now
