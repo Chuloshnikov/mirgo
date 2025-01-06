@@ -10,7 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 export default async function SignIn() {
   const session = await auth();
 
-  if (!session?.user) {
+  if (session?.user) {
     redirect('/');
   }
   return (

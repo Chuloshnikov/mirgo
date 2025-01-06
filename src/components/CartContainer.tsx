@@ -14,7 +14,7 @@ import Link from 'next/link';
 import FormattedPrice from './FormattedPrice';
 import Button from './Button';
 
-const CartContainer = () => {
+const CartContainer = ({session}: any) => {
     const { cart } = useSelector((state: StoreState) => state?.mirago);
     const dispatch = useDispatch();
 
@@ -65,9 +65,14 @@ const CartContainer = () => {
                                 Total: 
                                 <FormattedPrice amount={250}/>
                             </p>
-                            <Button disabled={true} className='w-full mt-4 disabled:bg-darkRed/40'>
+                            <Button disabled={!session?.user} className='w-full mt-4 disabled:bg-darkRed/40'>
                                 Proceed to Checkout
                             </Button>
+                            {!session?.user && (
+                                <p className='text-center text-sm font-medium text-lightRed -mt-3'>
+                                    Please sign in to make Checkout
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
