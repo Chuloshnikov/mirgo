@@ -14,7 +14,7 @@ export default async function SignIn() {
     redirect('/');
   }
   return (
-    <Container className="py-20 flex flex-col justify-center items-center">
+    <Container className="py-20 flex flex-col justify-center items-center h-[400px]">
         <form 
         action={async () => {
           'use server';
@@ -24,9 +24,9 @@ export default async function SignIn() {
         font-semibold bg-blue-50 px-4 py-1.5 hover:bg-blue-800
         hover:text-white hoverEffect"
         >
-            <button>
+            <button className='flex gap-2 items-center'>
               Signin with Google
-              <FcGoogle/>
+              <FcGoogle />
             </button>
         </form>
     </Container>

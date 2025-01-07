@@ -65,7 +65,10 @@ const CartContainer = ({session}: any) => {
                                 Total: 
                                 <FormattedPrice amount={250}/>
                             </p>
-                            <Button disabled={!session?.user} className='w-full mt-4 disabled:bg-darkRed/40'>
+                            <Button 
+                            onClick={handleCheckout}
+                            disabled={!session?.user} 
+                            className='w-full mt-4 disabled:bg-darkRed/40'>
                                 Proceed to Checkout
                             </Button>
                             {!session?.user && (
