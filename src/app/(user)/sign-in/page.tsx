@@ -25,7 +25,7 @@ export default async function SignIn() {
         hover:text-white hoverEffect"
         >
             <button className='flex gap-2 items-center'>
-              Signin with Google
+              Sign in with Google
               <FcGoogle />
             </button>
         </form>

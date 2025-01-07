@@ -26,6 +26,22 @@ const CartContainer = ({session}: any) => {
         }
     };
 
+    const handleCheckout = async () => {
+        const response = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                item: cart,
+                email: session?.user?.email,
+            }),
+        });
+        const result = await response.json();
+        console.log(result);
+        toast.success("hello from checkout");
+    }
+
   return (
     <div>
         {cart?.length > 0 ? 
