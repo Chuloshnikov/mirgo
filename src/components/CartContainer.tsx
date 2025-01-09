@@ -33,7 +33,7 @@ const CartContainer = ({session}: any) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                item: cart,
+                items: cart,
                 email: session?.user?.email,
             }),
         });
