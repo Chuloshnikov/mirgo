@@ -1,3 +1,4 @@
+import { urlFor } from "@/sanity/lib/image";
 import { ProductData } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -8,18 +9,20 @@ export const POST = async (request: NextRequest) => {
         const reqBody = await request.json();
         const { items, email } = await reqBody;
 
-        const existiongItems = await items?.map((item: ProductData) => ({
+        const extractingItems = await items?.map((item: ProductData) => ({
             quantity: item?.quantity,
             price_data: {
-                currency: "usd",
+                currency: "USD",
                 unit_amount: Math.round(item.price * 100),
                 product_data: {
                     name: item?.title,
                     description: item?.description,
+                    images: [urlFor(item.image).url()],
                 },
             },
         }));
 
+        //get website url
         const origin = request.headers.get("origin");
         console.log(origin);
 
