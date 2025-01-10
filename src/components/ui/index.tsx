@@ -1,4 +1,14 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
+
+
+interface ButtonProps {
+    children: React.ReactNode,
+    className?: string,
+    disabled?: boolean,
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined,
+    baseClasses?: string,
+    variant?: string,
+}
 
 const Table = ({ children}: React.PropsWithChildren) => (
     <div className="w-full overflow-auto">
@@ -97,7 +107,7 @@ export const Badge = ({
 }
 
 
-export const Button = ({}) => {
+export const OrderPageButton = ({children, onClick, baseClasses, variant, className}: ButtonProps) => {
 
     const variantClasses = {
         default: "bg-black text-white hover:bg-black/80",
