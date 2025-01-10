@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react'
 import { twMerge } from 'tailwind-merge';
 
-const Logo = ({ className }: { className: string }) => {
+const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href={"/"}>
       <h2 className={twMerge(`text-2xl text-accent hover:text-lightRed font-bold uppercase hoverEffect relative group overflow-hidden` , className)}>

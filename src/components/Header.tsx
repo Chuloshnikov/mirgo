@@ -5,8 +5,10 @@ import SearchInput from './SearchInput';
 import Link from 'next/link';
 import { navBarList } from '@/constants';
 import { HiMenuAlt2 } from 'react-icons/hi';
+import { auth } from '@/auth';
 
-const Header = () => {
+const Header = async () => {
+  const session = await auth();
   return (
     <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText pt-4 sticky z-50 top-0 left-0'>
         <nav>
@@ -23,8 +25,14 @@ const Header = () => {
                       {item?.title}
                     </Link>
                   ))}
-                  <Link href={'/sign-in'} className='navBarItem'>
-                    Sign in
+                  {!session?.user && (
+                    <Link href={'/sign-in'} className='navBarItem'>
+                      Sign in
+                    </Link>
+                  )}
+                    
+                  <Link href={'/orders'} target='_blank' className='navBarItem'>
+                    Orders
                   </Link>
                   <Link href={'/studio'} target='_blank' className='navBarItem'>
                     Studio
