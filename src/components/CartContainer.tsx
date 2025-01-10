@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductData, StoreState } from '../../type';
 import CartItem from './CartItem';
@@ -16,6 +16,7 @@ import Button from './Button';
 
 const CartContainer = ({session}: any) => {
     const { cart } = useSelector((state: StoreState) => state?.mirago);
+    const [totalAmt, setTotalAmt] = useState(0);
     const dispatch = useDispatch();
 
     const handleResetCart = () => {
@@ -25,6 +26,15 @@ const CartContainer = ({session}: any) => {
             toast.success('Cart reset successfully');
         }
     };
+
+    useEffect(() => {
+        let price = 0;
+        cart.map((item) => {
+            price += item?.price * item?.quantity;
+            return price;
+        });
+        setTotalAmt(price)
+    }, [cart]);
 
     const handleCheckout = async () => {
         const response = await fetch('/api/checkout', {
@@ -72,15 +82,15 @@ const CartContainer = ({session}: any) => {
                         <div>
                             <p className='flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium'>
                                 Subtotal: 
-                                <FormattedPrice amount={250}/>
+                                <FormattedPrice amount={totalAmt}/>
                             </p>
                             <p className='flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium'>
                                 Shipping Charge: 
-                                <FormattedPrice amount={250}/>
+                                <FormattedPrice amount={0}/>
                             </p>
                             <p className='flex items-center justify-between border-[1px] border-gray-400 py-1.5 px-4 text-lg font-medium'>
                                 Total: 
-                                <FormattedPrice amount={250}/>
+                                <FormattedPrice amount={totalAmt}/>
                             </p>
                             <Button 
                             onClick={handleCheckout}
