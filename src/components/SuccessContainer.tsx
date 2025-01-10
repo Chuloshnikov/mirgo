@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { HiCheckCircle, HiHome } from "react-icons/hi";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const SuccessContainer = ({ id }: { id: string }) => {
     const { cart } = useSelector((state: StoreState) => state?.mirago);
@@ -44,6 +45,7 @@ const SuccessContainer = ({ id }: { id: string }) => {
             if (data?.success) {
                 setLoading(false);
                 dispatch(resetCart());
+                toast.success(data?.message);
             }
         } catch (error) {
             console.log("Error", error);
@@ -98,7 +100,7 @@ const SuccessContainer = ({ id }: { id: string }) => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-10 flex justify-center">
+                <div className="mt-10 flex gap-2 justify-center">
                     <div className="w-3 h-3 bg-green-200 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-300 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
