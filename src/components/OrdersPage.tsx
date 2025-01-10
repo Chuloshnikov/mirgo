@@ -5,6 +5,12 @@ import { collection, deleteDoc, doc, query } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { db } from '@/firebase';
 import { ProductData } from '@/type';
+import Table, { Badge, Card, CardContent, CardHeader, CardTitle, OrderPageButton, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui';
+import FormattedPrice from './FormattedPrice';
+import Button from './Button';
+import { MdClose } from 'react-icons/md';
+import { AnimatePresence, motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 interface Order {
     id: string;
@@ -33,6 +39,20 @@ const OrdersPage = () => {
         ...doc.data()
     })) as Order[];
 
+    const handleDeleteOrder = async (id: string) => {
+        try {
+            await deleteDoc(doc(db, 'users', session?.user?.email as string, 'orders', id))
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                toast.error(error?.message);
+            } else {
+                toast.error(`An unexpected error occurred.`);
+            }
+        } finally {
+            toast.success('Order deleted successfully');
+        }
+    }
+
   return (
     <div className='flex flex-col gap-y-5 mt-5'>
         {loading ? (
@@ -45,8 +65,112 @@ const OrdersPage = () => {
             ))}
         </div>
         ) : (
-        <div>
-           {orders?.length && (<div></div>)}
+        <div className='flex flex-col gap-5'>
+           {orders?.length ? (orders?.map((item) => (
+            <div key={item?.id}>
+                <Card
+                className={expandedOrderId === item.id ? "border-darkOrange/30" : ""}
+                >
+                    <CardHeader>
+                        <CardTitle>
+                            Order ID:
+                            <span className='text-base tracking-wide'>
+                                {item?.id.slice(-10)}
+                            </span>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
+                            <div>
+                                <p className='text-sm font-medium text-black/60'>
+                                    Total Amount
+                                </p>
+
+                                <FormattedPrice
+                                    amount={item?.value?.amount}
+                                    className='text-lg font-semibold'
+                                    />
+                            </div>
+                            <div>
+                                <p className='text-sm font-medium text-black/60'>
+                                    Payment Status
+                                </p>
+                                <Badge variant="success">Paid</Badge>
+                            </div>
+                            <OrderPageButton
+                            onClick={() => toggleDetails(item.id)}
+                            >
+                                {expandedOrderId === item.id ? "Hide Details" : "Show Details"}
+                            </OrderPageButton>
+                            <OrderPageButton
+                            onClick={() => handleDeleteOrder(item?.id)}
+                            variant="delete"
+                            >
+                                <MdClose className='text-base mt-1'/>
+                                Delete order
+                            </OrderPageButton>
+                        </div>
+                    </CardContent>
+                    <AnimatePresence>
+                        {expandedOrderId === item?.id && (
+                            <motion.div 
+                            initial={{opacity: 0, height: 0}}
+                            animate={{ opacity: 1, height: 'auto'}}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            >
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle>
+                                            Order Items
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead>
+                                                        Item
+                                                    </TableHead>
+                                                    <TableHead
+                                                    className='text-center'
+                                                    >
+                                                        Price
+                                                    </TableHead>
+                                                    <TableHead
+                                                    className='text-center'
+                                                    >
+                                                        Quantity
+                                                    </TableHead>
+                                                    <TableHead
+                                                    className='text-center'
+                                                    >
+                                                        Subtotal
+                                                    </TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {item?.value?.items?.map((product: ProductData) => (
+                                                    <TableRow key={product?._id}>
+                                                        <TableCell>{product?.title}</TableCell>
+                                                        <TableCell
+                                                        className='text-center'>
+                                                            <FormattedPrice
+                                                                amount={product?.price}
+                                                                />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </Card>
+            </div>
+        ))) : (<div></div>)}
         </div>
     )}
     </div>
