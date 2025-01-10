@@ -67,19 +67,20 @@ const SuccessContainer = ({ id }: { id: string }) => {
         <div className="bg-gradient-to-b from-green-50 to-white flex items-center justify-center px-4 py-28">
             <div className="max-w-md w-full space-y-8 text-center">
                 <div className="relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative inset-0 flex items-center justify-center">
                         <div className="w-32 h-32 bg-green-100 rounded-full"></div>
-                        <div className="relative">
+                        <div className="absolute">
                             <HiCheckCircle className="mx-auto h-24 w-24 text-green-500"/>
                         </div>
                     </div>
-                    <h2>
+                 
+                    <div className="mt-8 space-y-6">
+                    <h2 className="text-2xl font-bold">
                         Success!
                     </h2>
                     <p className="text-sm mt-2 text-gray-600">
                         Your payment has been completed successfully.
                     </p>
-                    <div className="mt-8 space-y-6">
                         <p className="text-base text-gray-700">
                             Thank you for your submission. We&apos;ve received your information and will process it shortly.
                             You should receive a confirmation email within the next few minutes.
@@ -91,7 +92,7 @@ const SuccessContainer = ({ id }: { id: string }) => {
                             text-white font-semibold rounded-lg shadow-md transition 
                             duration-300 ease-in-out transform-hover:-translate-y-1">
                                 <HiHome className="mr-2 h-5 w-5"/>
-                                To Home page
+                                Home
                             </button>
                             </Link>
                         </div>

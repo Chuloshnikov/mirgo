@@ -8,8 +8,8 @@ interface Props {
     };
 }
 
-export default async function Success({ searchParams }: Props) {
-    const id = await searchParams?.session_id;
+export default function Success({ searchParams }: Props) {
+    const id = searchParams?.session_id;
 
     if (!id) {
         redirect("/");
