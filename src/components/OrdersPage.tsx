@@ -46,7 +46,7 @@ const OrdersPage = () => {
         </div>
         ) : (
         <div>
-            products
+           {orders?.length && (<div></div>)}
         </div>
     )}
     </div>
