@@ -20,4 +20,4 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default LayoutProvider
+export default LayoutProvider;
