@@ -25,8 +25,8 @@ export default async function SingleProductPage({ params }: Props) {
     const product: ProductData = await client.fetch(query, { slug });
     const bestSellersData: ProductData[] = await getBestSellersData();
   return (
-    <Container className='my-10 bg-bgLight'>
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full p-4'>
+    <Container className='my-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full p-4 border border-gray-300 border-b-0'>
             <div className='h-full xl:col-span-2'>
                 <Image 
                 src={urlFor(product?.image).url()} 

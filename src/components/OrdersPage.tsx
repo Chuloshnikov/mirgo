@@ -7,7 +7,6 @@ import { db } from '@/firebase';
 import { ProductData } from '@/type';
 import Table, { Badge, Card, CardContent, CardHeader, CardTitle, OrderPageButton, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui';
 import FormattedPrice from './FormattedPrice';
-import Button from './Button';
 import { MdClose } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
 import toast from 'react-hot-toast';
