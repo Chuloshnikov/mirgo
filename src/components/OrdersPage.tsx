@@ -71,12 +71,12 @@ const OrdersPage = () => {
                 className={expandedOrderId === item.id ? "border-darkOrange/30" : ""}
                 >
                     <CardHeader>
-                        <CardTitle>
-                            Order ID:
+                        <div className='text-base font-semibold'>
+                            Order ID:{" "}
                             <span className='text-base tracking-wide'>
                                 {item?.id.slice(-10)}
                             </span>
-                        </CardTitle>
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
@@ -98,14 +98,16 @@ const OrdersPage = () => {
                             </div>
                             <OrderPageButton
                             onClick={() => toggleDetails(item.id)}
+                            variant="default"
                             >
                                 {expandedOrderId === item.id ? "Hide Details" : "Show Details"}
                             </OrderPageButton>
                             <OrderPageButton
                             onClick={() => handleDeleteOrder(item?.id)}
                             variant="delete"
+                            className='flex items-center justify-center'
+                            
                             >
-                                <MdClose className='text-base mt-1'/>
                                 Delete order
                             </OrderPageButton>
                         </div>

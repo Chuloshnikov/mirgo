@@ -21,7 +21,7 @@ export const miragoSlice = createSlice({
   reducers: {
       addToCart: (state, action) => {
         const existingProduct = state.cart.find(
-          (item) => item._id === action.payload
+          (item) => item._id === action.payload._id
         );
 
         if (existingProduct) {
