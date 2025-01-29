@@ -11,7 +11,7 @@ export const POST = async (request: NextRequest) => {
             items: cart || [],
         };
         if (cart.length) {
-            const userOrdersRef = adminDB.collection('users').doc(email).collection('order').doc(id);
+            const userOrdersRef = adminDB.collection('users').doc(email).collection('orders').doc(id);
 
             const userDoc = await userOrdersRef.get();
             if (!userDoc?.exists) {
@@ -20,17 +20,9 @@ export const POST = async (request: NextRequest) => {
             await userOrdersRef.set({ value: orderItem }, { merge: true });
         }
 
-        return NextResponse.json({
-            success: true,
-            message: "Order saved successfully",
-        },
-        { status: 200 }
-    );
+        return NextResponse.json({ success: true, message: "Order saved successfully" }, { status: 200 });
 
     } catch (error) {
-        return NextResponse.json({
-            success: false,
-            message: error,
-        })
+        return NextResponse.json({ success: false, message: error })
     }
 }
