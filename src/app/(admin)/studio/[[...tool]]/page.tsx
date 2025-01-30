@@ -11,24 +11,11 @@ import { NextStudio } from 'next-sanity/studio';
 import config from '../../../../../sanity.config';
 
 
-import { auth } from '@/auth'
-import { redirect } from 'next/navigation';
-
 
 export const dynamic = 'force-static'
 
 export { metadata, viewport } from 'next-sanity/studio'
 
-export default async function StudioPage() {
-  
-      const session = await auth();
-      console.log(session?.user?.email);
-
-      //if (session?.user?.email !== process.env.ADMIN_EMAIL) {
-     //     redirect("/");
-      //}
-
-      
-
+export default function StudioPage() {
   return <NextStudio config={config} />
 }
