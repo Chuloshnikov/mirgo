@@ -9,6 +9,7 @@ import { auth } from '@/auth';
 
 const Header = async () => {
   const session = await auth();
+
   return (
     <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText pt-4 sticky z-50 top-0 left-0'>
         <nav>
@@ -34,9 +35,12 @@ const Header = async () => {
                   <Link href={'/orders'} target='_blank' className='navBarItem'>
                     Orders
                   </Link>
-                  <Link href={'/studio'} target='_blank' className='navBarItem'>
-                    Studio
-                  </Link>
+                  {session?.user?.email === process.env.ADMIN_EMAIL && (
+                     <Link href={'/studio'} target='_blank' className='navBarItem'>
+                        Studio
+                      </Link>
+                  )}
+                 
                 </div>
                 <HiMenuAlt2 className="inline-flex mdl:hidden cursor-pointer text-3xl hover:text-darkRed hoverEffect"/>
             </Container>
