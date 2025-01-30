@@ -1,11 +1,22 @@
 "use client"
+import Link from 'next/link';
 import { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from 'react-icons/io';
 
-const SearchInput = () => {
+import { ProductData } from '../../type';
+
+
+const SearchInput = ({ products }: {products: ProductData[]}) => {
     const [search, setSearch] = useState<string>("");
     const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
+
+    const filteredProducts = Array.isArray(products)
+    ? products.filter(product =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
+
   return (
     <>
       <div className='w-full hidden mdl:inline-flex flex-1 h-12 relative'>
@@ -33,12 +44,38 @@ const SearchInput = () => {
           </button>
           {isPopupVisible && (
                 <div className="absolute top-full left-0 w-full bg-white shadow-lg border border-gray-300 mt-1 p-2 rounded-sm z-50">
-                    <p className="text-sm text-gray-500">Popular зroducts</p>
-                    <ul className="text-sm">
-                        <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">iPhone 15</li>
-                        <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">MacBook Pro</li>
-                        <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">Samsung Galaxy S24</li>
-                    </ul>
+                    <p className="text-sm text-gray-500">Popular items</p>
+                    {isPopupVisible && search && (
+                          <div className="absolute top-full left-0 w-full bg-white shadow-lg border border-gray-300 mt-1 p-2 rounded-sm z-50">
+                            {filteredProducts.length > 0 ? (
+                              <ul className="text-sm">
+                                {filteredProducts.map((product) => (
+                                  <Link key={product.id} href={`/product/${product.id}`}>
+                                    <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">
+                                      {product.title}
+                                    </li>
+                                  </Link>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className="text-sm text-gray-500 px-2">No products found</p>
+                            )}
+                          </div>
+                        )}
+                      {isPopupVisible && !search && (
+                          <ul className="text-sm">
+                          <Link href={'/shop'}>
+                            <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">Xbox S</li>
+                          </Link>
+                          <Link href={'/shop'}>
+                            <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">Nintendo Switch</li>
+                          </Link>
+                          <Link href={'/shop'}>
+                            <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">Dandy II</li>
+                          </Link>
+                      </ul>
+                      )
+                    }
                 </div>
             )}
       </div>
