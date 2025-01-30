@@ -49,10 +49,10 @@ const SearchInput = ({ products }: {products: ProductData[]}) => {
                           <div className="absolute top-full left-0 w-full bg-white shadow-lg border border-gray-300 mt-1 p-2 rounded-sm z-50">
                             {filteredProducts.length > 0 ? (
                               <ul className="text-sm">
-                                {filteredProducts.map((product) => (
-                                  <Link key={product.id} href={`/product/${product.id}`}>
+                                {filteredProducts.map((item: ProductData) => (
+                                  <Link key={item.title} href={`/product/${item?.slug.current}`}>
                                     <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">
-                                      {product.title}
+                                      {item.title}
                                     </li>
                                   </Link>
                                 ))}
