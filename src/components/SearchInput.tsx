@@ -33,7 +33,7 @@ const SearchInput = () => {
           </button>
           {isPopupVisible && (
                 <div className="absolute top-full left-0 w-full bg-white shadow-lg border border-gray-300 mt-1 p-2 rounded-sm z-50">
-                    <p className="text-sm text-gray-500">Популярные запросы</p>
+                    <p className="text-sm text-gray-500">Popular зroducts</p>
                     <ul className="text-sm">
                         <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">iPhone 15</li>
                         <li className="py-1 hover:bg-gray-100 cursor-pointer px-2">MacBook Pro</li>
