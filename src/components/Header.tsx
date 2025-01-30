@@ -7,15 +7,19 @@ import { navBarList } from '@/constants';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { auth } from '@/auth';
 
+import { ProductData } from '../../type';
+import { getProductsData } from '@/lib/getData';
+
 const Header = async () => {
   const session = await auth();
-
+  const products: ProductData[] = await getProductsData();
+ console.log(products);
   return (
     <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText pt-4 sticky z-50 top-0 left-0'>
         <nav>
             <Container className='h-full flex items-center justify-between gap-5 lg:gap-10'>
                 <Logo/>
-                <SearchInput/>
+                <SearchInput products={products}/>
                 <div className='hidden mdl:inline-flex item-center gap-7'>
                   {navBarList?.map((item, index) =>(
                     <Link 
