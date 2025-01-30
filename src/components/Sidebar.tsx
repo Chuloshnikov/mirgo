@@ -8,8 +8,7 @@ import Image from 'next/image';
 const Sidebar = async () => {
 
   const session = await auth();
-  console.log(session);
-
+  
   return (
     <div className='fixed top-60 right-2 z-20 flex flex-col gap-2'>
         {/*User Account*/}
