@@ -7,7 +7,6 @@ import { db } from '@/firebase';
 import { ProductData } from '@/type';
 import Table, { Badge, Card, CardContent, CardHeader, CardTitle, OrderPageButton, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui';
 import FormattedPrice from './FormattedPrice';
-import { MdClose } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 
@@ -37,6 +36,7 @@ const OrdersPage = () => {
         id: doc.id,
         ...doc.data()
     })) as Order[];
+    console.log(orders);
 
     const handleDeleteOrder = async (id: string) => {
         try {
@@ -160,6 +160,16 @@ const OrdersPage = () => {
                                                                 amount={product?.price}
                                                                 />
                                                         </TableCell>
+                                                        <TableCell
+                                                        className='text-center'>
+                                                                {product?.quantity}
+                                                        </TableCell>
+                                                        <TableCell
+                                                        className='text-right font-semibold'>
+                                                            <FormattedPrice
+                                                                amount={product?.price * product?.quantity}
+                                                                />
+                                                        </TableCell>
                                                     </TableRow>
                                                 ))}
                                             </TableBody>
@@ -171,7 +181,10 @@ const OrdersPage = () => {
                     </AnimatePresence>
                 </Card>
             </div>
-        ))) : (<div></div>)}
+        ))) : (
+        <div>
+                <h2 className='text-xl font-semibold mt-4'>Your order data is empty</h2>
+        </div>)}
         </div>
     )}
     </div>

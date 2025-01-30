@@ -25,10 +25,8 @@ export const TableHeader = ({ children }: React.PropsWithChildren) => (
 );
 
 export const TableBody = ({ children }: React.PropsWithChildren) => {
-    <tbody>
-        {children}
-    </tbody>
-}
+    return <tbody>{children}</tbody>;
+};
 
 export const TableRow = ({ children }: React.PropsWithChildren) => (
     <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
