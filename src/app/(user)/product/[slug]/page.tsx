@@ -16,8 +16,8 @@ interface Props {
     }
 }
 
-export default async function SingleProductPage({ params }: Props) {
-    const {slug} = await Promise.resolve(params);
+export default function SingleProductPage({ params }: Props) {
+    const {slug} = params;
     const query = groq`*[_type == 'product' && slug.current == $slug][0]{
     ...
 }`;
