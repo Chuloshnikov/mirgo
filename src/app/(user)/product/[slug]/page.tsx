@@ -10,8 +10,13 @@ import FormattedPrice from '@/components/FormattedPrice';
 import { MdStar } from 'react-icons/md';
 import AddToCartButton from '@/components/AddToCartButton';
 
+interface Props {
+    params: {
+      slug: string;
+    };
+  }
 
-export default async function SingleProductPage({ params: { slug } }: string) {
+const SingleProductPage = async ({ params: { slug } }:  Props) => {
     const query = groq`*[_type == 'product' && slug.current == $slug][0]{
     ...
 }`;
@@ -72,7 +77,7 @@ export default async function SingleProductPage({ params: { slug } }: string) {
                     <AddToCartButton item={product} className='rounded-md py-3'/>
                     <p className='font-normal text-sm'>
                         <span className='text-base font-medium'>
-                            Categoories:{" "}
+                            Categories:{" "}
                         </span>
                         Playstation, Console, featured SKU N/A
                     </p>
@@ -87,3 +92,5 @@ export default async function SingleProductPage({ params: { slug } }: string) {
     </Container>
   )
 }
+
+export default SingleProductPage;
