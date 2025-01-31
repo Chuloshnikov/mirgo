@@ -17,7 +17,6 @@ interface Props {
 
 const CartItem = ({ cart, item }: Props) => {
     const [existingProduct, setExistingProduct] = useState<ProductData | null>(null);
-    const [disabled, setDisabled] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
