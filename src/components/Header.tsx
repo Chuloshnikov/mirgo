@@ -4,16 +4,17 @@ import Logo from './Logo';
 import SearchInput from './SearchInput';
 import Link from 'next/link';
 import { navBarList } from '@/constants';
-import { HiMenuAlt2 } from 'react-icons/hi';
 import { auth } from '@/auth';
 
 import { ProductData } from '../../type';
 import { getProductsData } from '@/lib/getData';
+import BurgerMenu from './BurgerMenu';
 
 const Header = async () => {
   const session = await auth();
   const products: ProductData[] = await getProductsData();
- console.log(products);
+  const admin = session?.user?.email === process.env.ADMIN_EMAIL;
+  
   return (
     <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText pt-4 sticky z-50 top-0 left-0'>
         <nav>
@@ -44,9 +45,8 @@ const Header = async () => {
                         Studio
                       </Link>
                   )}
-                 
                 </div>
-                <HiMenuAlt2 className="inline-flex mdl:hidden cursor-pointer text-3xl hover:text-darkRed hoverEffect"/>
+                <BurgerMenu session={session} navBarList={navBarList} admin={admin}/>
             </Container>
         </nav>
     </header>
