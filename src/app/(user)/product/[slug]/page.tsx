@@ -10,13 +10,8 @@ import FormattedPrice from '@/components/FormattedPrice';
 import { MdStar } from 'react-icons/md';
 import AddToCartButton from '@/components/AddToCartButton';
 
-interface Props {
-    params: {
-        slug: string;
-    }
-}
 
-export default async function SingleProductPage({ params: { slug } }: Props) {
+export default async function SingleProductPage({ params: { slug } }: string) {
     const query = groq`*[_type == 'product' && slug.current == $slug][0]{
     ...
 }`;
