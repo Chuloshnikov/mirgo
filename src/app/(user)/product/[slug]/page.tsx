@@ -16,7 +16,7 @@ interface Props {
     };
   }
 
-const SingleProductPage = async ({ params: { slug } }:  Props) => {
+const SingleProductPage = async ({ params: { slug } }:  Props): Promise<JSX.Element> => {
     const query = groq`*[_type == 'product' && slug.current == $slug][0]{
     ...
 }`;
