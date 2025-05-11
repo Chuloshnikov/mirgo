@@ -108,19 +108,21 @@ export const Badge = ({
 export const OrderPageButton = ({children, onClick, baseClasses, variant, className}: ButtonProps) => {
 
     const variantClasses = {
-        default: "bg-black text-white hover:bg-black/80",
-        delete: "bg-red-600 text-white hover:bg-red-700",
-        demo: "bg-blue-600 text-white hover:bg-blue-700"
-    }
-    return (
-        <button
+    default: "bg-black text-white hover:bg-black/80",
+    delete: "bg-red-600 text-white hover:bg-red-700",
+    demo: "bg-blue-600 text-white hover:bg-blue-700"
+} as const;
+
+const selectedVariant = variant ?? "default";
+
+return (
+    <button
         onClick={onClick}
-        className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-        
-        >
-            {children}
-        </button>
-    )
+        className={`${baseClasses} ${variantClasses[selectedVariant]} ${className}`}
+    >
+        {children}
+    </button>
+);
 }
 
 
