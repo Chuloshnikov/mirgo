@@ -11,10 +11,14 @@ import { MdStar } from 'react-icons/md';
 import AddToCartButton from '@/components/AddToCartButton';
 
 
-  
+  type Props = {
+  params: {
+    slug: string;
+  };
+};
 
 
-const SingleProductPage = async ({ params }: { params: { slug: string } }) => {
+const SingleProductPage = async ({ params }: Props) => {
     const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
     const product: ProductData = await client.fetch(query, { slug: params.slug });
     const bestSellersData: ProductData[] = await getBestSellersData();
