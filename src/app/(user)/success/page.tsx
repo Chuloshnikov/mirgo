@@ -2,13 +2,9 @@ import SuccessContainer from '@/components/SuccessContainer';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-interface Props {
-    searchParams: {
-        session_id: string | null;
-    };
-}
 
-export default async function Success({ searchParams }: Props) {
+
+export default async function Success({ searchParams }: any) {
     const id = await (searchParams?.session_id);
 
     if (!id) {
