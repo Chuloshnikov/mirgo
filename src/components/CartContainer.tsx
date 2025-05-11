@@ -13,7 +13,6 @@ import { emptyCart } from '@/assets';
 import Link from 'next/link';
 import FormattedPrice from './FormattedPrice';
 import Button from './Button';
-import { Session } from 'next-auth';
 
 const CartContainer = ({session}: any) => {
     const { cart } = useSelector((state: StoreState) => state?.mirago);
