@@ -3,7 +3,7 @@
 import { resetCart } from "@/redux/miragoSlice";
 import { StoreState } from "@/type";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { HiCheckCircle, HiHome } from "react-icons/hi";
@@ -28,39 +28,39 @@ const SuccessContainer = ({ id }: { id: string }) => {
         setTotalAmt(price)
     }, [cart]);
 
-    const handleSaveOrder = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch('/api/save-order', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    cart,
-                    email: session?.user?.email as string,
-                    id: id,
-                    totalAmt,
-                }),
-            });
-            const data = await response.json();
-            if (data?.success) {
-                setLoading(false);
-                dispatch(resetCart());
-                toast.success(data?.message);
-            }
-        } catch (error) {
-            console.log("Error", error);
-        } finally {
-            setLoading(false);
+   const handleSaveOrder = useCallback(async () => {
+    try {
+        setLoading(true);
+        const response = await fetch('/api/save-order', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                cart,
+                email: session?.user?.email as string,
+                id: id,
+                totalAmt,
+            }),
+        });
+        const data = await response.json();
+        if (data?.success) {
+            dispatch(resetCart());
+            toast.success(data?.message);
         }
-    } 
+    } catch (error) {
+        console.log("Error", error);
+    } finally {
+        setLoading(false);
+    }
+}, [cart, session?.user?.email, id, totalAmt, dispatch]);
+
 
     useEffect(() => {
         if (session?.user && cart?.length) {
             handleSaveOrder();
         }
-    }, [session?.user, cart?.length]);
+    }, [session?.user, cart?.length, handleSaveOrder]);
 
   return (
     <div>
