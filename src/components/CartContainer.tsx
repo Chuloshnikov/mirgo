@@ -15,7 +15,7 @@ import FormattedPrice from './FormattedPrice';
 import Button from './Button';
 import { Session } from 'next-auth';
 
-const CartContainer = ({session}: {session: Session}) => {
+const CartContainer = ({session}: any) => {
     const { cart } = useSelector((state: StoreState) => state?.mirago);
     const [totalAmt, setTotalAmt] = useState(0);
     const dispatch = useDispatch();
