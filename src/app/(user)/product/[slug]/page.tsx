@@ -10,21 +10,15 @@ import FormattedPrice from '@/components/FormattedPrice';
 import { MdStar } from 'react-icons/md';
 import AddToCartButton from '@/components/AddToCartButton';
 
-interface Props {
-    params: {
-      slug: string;
-    };
-  }
+
   
 
 
-const SingleProductPage = async ({ params: { slug } }: Props) => {
-    const query = groq`*[_type == 'product' && slug.current == $slug][0]{
-    ...
-}`;
-
-    const product: ProductData = await client.fetch(query, { slug });
+const SingleProductPage = async ({ params }: { params: { slug: string } }) => {
+    const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
+    const product: ProductData = await client.fetch(query, { slug: params.slug });
     const bestSellersData: ProductData[] = await getBestSellersData();
+
   return (
     <Container className='my-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full p-4 border border-gray-300 border-b-0'>
