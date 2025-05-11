@@ -13,7 +13,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 
   type Props = {
   params: {
-    slug: string;
+    slug: string | undefined;
   };
 };
 
